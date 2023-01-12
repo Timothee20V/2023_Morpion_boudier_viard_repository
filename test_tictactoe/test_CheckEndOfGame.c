@@ -81,7 +81,7 @@ static const BoardDataTest DataTest[] =
 
 };
 
-void testCheckEndOfGame (void)
+void test_CheckEndOfGame (void)
 {
 	int successCount = 0;
 	int failCount = 0;
