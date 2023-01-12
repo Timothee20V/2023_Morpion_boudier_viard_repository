@@ -23,56 +23,67 @@ typedef struct
 
 static const BoardDataTest DataTest[] =
 {
+//Test 0
 {
 {
 {NONE, NONE, NONE},
 {NONE, NONE, NONE},
 {NONE, NONE, NONE}}, 0, 0, false, DRAW},
+// Test 1
 {
 {
 {NONE, NONE, NONE},
 {NONE, CROSS, NONE},
 {NONE, NONE, NONE}}, 0, 0, false, DRAW},
+// Test 2
 {
 {
 {NONE, NONE, NONE},
 {NONE, CIRCLE, NONE},
 {NONE, NONE, NONE}}, 1, 1, false, DRAW},
+// Test 3
 {
 {
 {CROSS, NONE, NONE},
 {CROSS, CIRCLE, NONE},
 {NONE, NONE, NONE}}, 0, 1, false, DRAW},
+// Test 4
 {
 {
 {CROSS, NONE, NONE},
 {CROSS, CIRCLE, CIRCLE},
 {NONE, CROSS, NONE}}, 1, 2, false, DRAW},
+// Test 5
 {
 {
 {CROSS, NONE, NONE},
 {CIRCLE, CIRCLE, NONE},
 {NONE, NONE, CROSS}}, 2, 2, false, DRAW},
+// Test 6
 {
 {
 {CROSS, NONE, NONE},
 {CROSS, CIRCLE, CIRCLE},
 {CROSS, NONE, NONE}}, 0, 1, true, CROSS_WINS},
+// Test 7
 {
 {
 {CROSS, NONE, NONE},
 {CIRCLE, CIRCLE, CIRCLE},
 {CROSS, NONE, NONE}}, 2, 1, true, CIRCLE_WINS},
+// Test 8
 {
 {
 {CROSS, NONE, NONE},
 {CIRCLE, CROSS, CIRCLE},
 {NONE, NONE, CROSS}}, 0, 0, true, CROSS_WINS},
+// Test 9
 {
 {
 {CROSS, NONE, CIRCLE},
 {CROSS, CIRCLE, NONE},
 {CIRCLE, NONE, CROSS}}, 1, 1, true, CIRCLE_WINS},
+// Test 10
 {
 {
 {CIRCLE, CROSS, CIRCLE},
