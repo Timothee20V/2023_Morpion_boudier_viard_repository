@@ -5,7 +5,7 @@
  * @author jilias
  */
 
-#include "test_checkEndOfGame.c"
+#include "test_CheckEndOfGame.c"
 
 int main (void)
 {

@@ -20,13 +20,16 @@
 static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
   int numberSquaresEmpty = 0;
-
+  bool end = false;
+  bool win = false;
+  
   // Test des lignes
   for(int i=0; i<3; i++)
   {
     if(boardSquares[i][0] != NONE && boardSquares[i][0] == boardSquares[i][1] && boardSquares[i][1] == boardSquares[i][2])
     {
-      return true;
+      end = true;
+      win = true;
     }
   }
 
@@ -35,20 +38,23 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   {
     if(boardSquares[0][i] != NONE && boardSquares[0][i] == boardSquares[1][i] && boardSquares[1][i] == boardSquares[2][i])
     {
-      return true;
+      end = true;
+      win = true;
     }
   }
 
   // Test de la 1er diagonnale
   if(boardSquares[0][0] != NONE && boardSquares[0][0] == boardSquares[1][1] && boardSquares[1][1] == boardSquares[2][2])
   {
-      return true;
+      end = true;
+      win = true;
   }
 
   // Test de la 2eme diagonale
   if(boardSquares[0][2] != NONE && boardSquares[0][2] == boardSquares[1][1] && boardSquares[1][1] == boardSquares[2][0])
   {
-      return true;
+      end = true;
+      win = true;
   }
 
   // Test tableau rempli
@@ -64,10 +70,32 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   }
   if (numberSquaresEmpty == 0)
   {
-    return true;
+    end = true;
+  }
+
+  if(end && win)
+  {
+    if(boardSquares[lastChangeX][lastChangeY] == CROSS)
+    {
+      *gameResult = CROSS_WINS;
+      printf("CROSS");
+      printf("\n");
+    }
+    if(boardSquares[lastChangeX][lastChangeY] == CIRCLE)
+    {
+      *gameResult = CIRCLE_WINS;
+      printf("CIRCLE");
+      printf("\n");
+    }
+  }
+  else
+  {
+    *gameResult = DRAW;
+    printf("DRAW");
+    printf("\n");
   }
   
-  return false;
+  return end;
 
 }
 
