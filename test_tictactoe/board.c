@@ -22,6 +22,7 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   int numberSquaresEmpty = 0;
   bool end = false;
   bool win = false;
+  *gameResult = DRAW;
   
   // Test des lignes
   for(int i=0; i<3; i++)
@@ -58,9 +59,9 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   }
 
   // Test tableau rempli
-  for(int i = 0; i < 2; i++)
+  for(int i = 0; i < 3; i++)
   {
-    for (int j = 0; j < 2; j++)
+    for (int j = 0; j < 3; j++)
     {
       if (boardSquares[i][j] == NONE)
       {
@@ -74,25 +75,15 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   }
 
   if(end && win)
-  {
-    if(boardSquares[lastChangeX][lastChangeY] == CROSS)
+  { 
+    if(boardSquares[lastChangeY][lastChangeX] == CROSS)
     {
       *gameResult = CROSS_WINS;
-      printf("CROSS");
-      printf("\n");
     }
-    if(boardSquares[lastChangeX][lastChangeY] == CIRCLE)
+    if(boardSquares[lastChangeY][lastChangeX] == CIRCLE)
     {
       *gameResult = CIRCLE_WINS;
-      printf("CIRCLE");
-      printf("\n");
     }
-  }
-  else
-  {
-    *gameResult = DRAW;
-    printf("DRAW");
-    printf("\n");
   }
   
   return end;
