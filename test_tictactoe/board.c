@@ -17,6 +17,15 @@
  *
  * @return a boolean that tells if the game is finished
  */
+
+PieceType boardSquares[3][3] = 
+{
+{NONE, NONE, NONE},
+{NONE, NONE, NONE},
+{NONE, NONE, NONE}
+};
+
+
 static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
   int numberSquaresEmpty = 0;
@@ -90,22 +99,25 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 }
 
-// void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
-// {
-//   // TODO: à compléter
-// }
+void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
+{
+  // TODO: à compléter
+}
 
-// void Board_free ()
-// {
-//   // TODO: à compléter
-// }
+void Board_free ()
+{
+  // TODO: à compléter
+}
 
-// PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
-// {
-//   // TODO: à compléter
-// }
+PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
+{
+  if (boardSquares == NONE)
+  {
+      boardSquares[x][y] = kindOfPiece;
+  }
+}
 
-// PieceType Board_getSquareContent (Coordinate x, Coordinate y)
-// {
-//   // TODO: à compléter
-// }
+PieceType Board_getSquareContent (Coordinate x, Coordinate y)
+{
+  // TODO: à compléter
+}
