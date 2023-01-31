@@ -110,10 +110,22 @@ void Board_free ()
 }
 
 PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
-{
-  if (boardSquares == NONE)
+{ 
+  if (boardSquares[x][y] != NONE)
   {
-      boardSquares[x][y] = kindOfPiece;
+    return SQUARE_IS_NOT_EMPTY;
+  }
+  else
+  {
+    boardSquares[x][y] = kindOfPiece;
+    squareChangeCallback(x, y, kindOfPiece);
+
+    GameResult gameResult;
+    if (isGameFinished(boardSquares, x, y, gameResult))
+    {
+      endOfGameCallback(gameResult);
+    }
+    return PIECE_IN_PLACE;
   }
 }
 
