@@ -12,9 +12,33 @@ void BoardView_free (void)
 {
 }
 
+char afficherCoord(Coordinate x, Coordinate y)
+{
+  switch(Board_getSquareContent(x, y)){
+        case NONE:
+          return ' ';
+        case CIRCLE:
+          return 'O';
+        case CROSS:
+          return 'X';
+      }
+}
+
 void BoardView_displayAll (void)
 {
-  // TODO: à compléter
+  printf("\033[2J"); 
+  printf("-------------\n");
+  for(Coordinate i=0; i<3; i++)
+  {
+    for(Coordinate j=0; j<3; j++)
+    {
+      printf("| ");
+      printf("%c ", afficherCoord(i, j));
+    }
+    printf("|\n");
+    printf("-------------\n");
+  }
+
 }
 
 void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
