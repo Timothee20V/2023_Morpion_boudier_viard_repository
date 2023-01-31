@@ -1,6 +1,10 @@
 #include "board.h"
 #include <assert.h>
 
+// Déclaration de la variable boardSquares un tableau vide de taille 3x3
+static PieceType boardSquares[3][3];
+
+
 /**
  * Check if the game has to be ended. Only alignment from the last
  * modified square are checked.
@@ -100,12 +104,14 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 //   // TODO: à compléter
 // }
 
-// PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
-// {
-//   // TODO: à compléter
-// }
+//  PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
+//  {
+//    // TODO: à compléter
+//  }
 
-// PieceType Board_getSquareContent (Coordinate x, Coordinate y)
-// {
-//   // TODO: à compléter
-// }
+PieceType Board_getSquareContent (Coordinate x, Coordinate y)
+{
+  assert(x >= 0 && x <= 2);
+  assert(y >= 0 && y <= 2);
+  return boardSquares[y][x];	 
+}
