@@ -24,17 +24,18 @@ void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame (GameResult result)
 {
-  // TODO: à compléter
+  printf("Game over: %d ", result);
 }
 
 void BoardView_displayPlayersTurn (PieceType thisPlayer)
 {
-  // TODO: à compléter
+  assert(thisPlayer != NONE);
+  printf("Player %d has to play", thisPlayer);
 }
 
 void BoardView_sayCannotPutPiece (void)
 {
-  // TODO: à compléter
+  printf("Cannot put piece, this square is not empty");
 }
 
 #endif // defined CONFIG_TEXTUI
