@@ -20,6 +20,15 @@ static PieceType (*boardSquares)[3];
  *
  * @return a boolean that tells if the game is finished
  */
+
+PieceType boardSquares[3][3] = 
+{
+{NONE, NONE, NONE},
+{NONE, NONE, NONE},
+{NONE, NONE, NONE}
+};
+
+
 static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
   int numberSquaresEmpty = 0;
@@ -95,6 +104,7 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
 {
+
   boardSquares = calloc(3, sizeof *boardSquares);
   for(int i = 0; i < 3; i++)
   {
@@ -103,7 +113,6 @@ void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfG
       boardSquares[i][j] = NONE;
     }
   }
-
 }
 
 void Board_free ()
@@ -111,11 +120,6 @@ void Board_free ()
  //efface en memoire le tableau boardSquares
   free(boardSquares);
 }
-
-//  PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
-//  {
-//    // TODO: à compléter
-//  }
 
 PieceType Board_getSquareContent (Coordinate x, Coordinate y)
 {
@@ -125,3 +129,12 @@ PieceType Board_getSquareContent (Coordinate x, Coordinate y)
   //retourne la valeur de la case du tableau
   return boardSquares[y][x];
 }
+
+PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
+{
+  if (boardSquares == NONE)
+  {
+      boardSquares[x][y] = kindOfPiece;
+  }
+}
+
