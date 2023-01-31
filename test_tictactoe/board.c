@@ -1,9 +1,8 @@
 #include "board.h"
 #include <assert.h>
 
-// Déclaration de la variable boardSquares un tableau vide de taille 3x3
-static PieceType boardSquares[3][3];
-
+// Déclaration de la variable boardSquares un tableau vide de trois pointeurs de PieceType
+static PieceType (*boardSquares)[3];
 
 /**
  * Check if the game has to be ended. Only alignment from the last
@@ -94,15 +93,24 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 }
 
-// void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
-// {
-//   // TODO: à compléter
-// }
+void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
+{
+  boardSquares = calloc(3, sizeof *boardSquares);
+  for(int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 3; j++)
+    {
+      boardSquares[i][j] = NONE;
+    }
+  }
 
-// void Board_free ()
-// {
-//   // TODO: à compléter
-// }
+}
+
+void Board_free ()
+{
+ //efface en memoire le tableau boardSquares
+  free(boardSquares);
+}
 
 //  PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
 //  {
@@ -111,7 +119,9 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 PieceType Board_getSquareContent (Coordinate x, Coordinate y)
 {
+  //verifie que les coordonnées sont dans le tableau
   assert(x >= 0 && x <= 2);
   assert(y >= 0 && y <= 2);
-  return boardSquares[y][x];	 
+  //retourne la valeur de la case du tableau
+  return boardSquares[y][x];
 }
