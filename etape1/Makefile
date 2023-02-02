@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-I. -DCONFIG_TEXTUI -DCONFIG_PLAYER_MANAGER_MOCK
-DEPS = board.h player.h player_manager.h game.h
-SRCS = main.c board.c player.c player_manager.c game.c
-OBJS = main.o board.o player.o player_manager.o game.o
+DEPS = board.h game.h player_manager.h board_view.h
+SRCS = main.c board.c game.c player_manager_mock.c board_view.c
+OBJS = main.o board.o game.o player_manager_mock.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
