@@ -11,6 +11,8 @@
 
 #if defined CONFIG_PLAYER_MANAGER_MOCK
 
+static PieceType currentPlayer = CROSS;
+
 void PlayerManager_init (void)
 {
 }
@@ -21,7 +23,13 @@ void PlayerManager_free (void)
 
 void PlayerManager_oneTurn (void)
 {
-  /* TODO: à compléter */
+  do{
+    Coordinate coordX = scanf("Entrer la coordonnée X : ");
+    Coordinate coordY = scanf("Entrer la coordonnée Y : ");
+  }while(Board_putPiece(coordX,coordY, currentPlayer) == SQUARE_IS_NOT_EMPTY)
+  currentPlayer = (currentPlayer == CROSS) ? CIRCLE : CROSS;
+  return 1;
 }
 
 #endif //  #if defined CONFIG_PLAYER_MANAGER_MOCK
+
