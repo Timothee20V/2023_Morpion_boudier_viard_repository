@@ -9,17 +9,38 @@
 #include "board_view.h"
 #include "board.h"
 
+bool endGame = false;
+
+void squareChangedCallback(Coordinate x, Coordinate y, PieceType newContent) {
+    BoardView_displaySquare(x, y, newContent);
+}
+
+void endOfGameCallback(GameResult result) {
+    endGame = true;
+    BoardView_displayEndOfGame(result);
+}
+
 void Game_init (void)
 {
-  // TODO: initialiser tous les modules
+  Board_init(squareChangedCallback, endOfGameCallback);
+  BoardView_init();
+  PlayerManager_init();
 }
 
 void Game_free (void)
 {
-  // TODO: libérer tous les modules
+  Board_free();
+  BoardView_free();
+  PlayerManager_free();
 }
 
 void Game_loop (void)
 {
-	// TODO: à compléter
+  PieceType currentPlayer = CROSS;
+
+  BoardView_displayAll();
+  while (!endGame) {
+    BoardView_displayPlayersTurn(currentPlayer);
+    PlayerManager_oneTurn();
+  }
 }

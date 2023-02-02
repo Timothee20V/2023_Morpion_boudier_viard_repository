@@ -125,8 +125,8 @@ PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece
     boardSquares[x][y] = kindOfPiece;
     squareChangeCallback(x, y, kindOfPiece);
 
-    GameResult gameResult;
-    if (isGameFinished(boardSquares, x, y, gameResult))
+    GameResult gameResult = DRAW;
+    if (isGameFinished(boardSquares, x, y, &gameResult))
     {
       endOfGameCallback(gameResult);
     }

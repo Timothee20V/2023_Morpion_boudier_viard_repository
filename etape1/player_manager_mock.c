@@ -11,7 +11,7 @@
 
 #if defined CONFIG_PLAYER_MANAGER_MOCK
 
-static PieceType currentPlayer = CROSS;
+PieceType currentPlayer = CROSS;
 
 void PlayerManager_init (void)
 {
