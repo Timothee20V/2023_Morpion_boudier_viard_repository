@@ -13,6 +13,21 @@
 
 PieceType currentPlayer = CROSS;
 
+int conteur = 0;
+const struct {
+  Coordinate x;
+  Coordinate y;} test[9] = {
+    { 1, 1},
+    { 0, 0},
+    { 0, 1},
+    { 2, 1},
+    { 2, 0},
+    { 1, 0},
+    { 0, 2},
+    { 1, 2},
+    { 2, 2},
+};
+
 void PlayerManager_init (void)
 {
 }
@@ -24,11 +39,11 @@ void PlayerManager_free (void)
 void PlayerManager_oneTurn (void)
 {
   do{
-    Coordinate coordX = scanf("Entrer la coordonnée X : ");
-    Coordinate coordY = scanf("Entrer la coordonnée Y : ");
+    coordX = test[conteur].x;
+    coordY = test[conteur].y;
   }while(Board_putPiece(coordX,coordY, currentPlayer) == SQUARE_IS_NOT_EMPTY)
   currentPlayer = (currentPlayer == CROSS) ? CIRCLE : CROSS;
-  return 1;
+  conteur++;
 }
 
 #endif //  #if defined CONFIG_PLAYER_MANAGER_MOCK
