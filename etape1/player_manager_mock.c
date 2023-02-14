@@ -38,10 +38,12 @@ void PlayerManager_free (void)
 
 void PlayerManager_oneTurn (void)
 {
+  Coordinate coordX;
+  Coordinate coordY;
   do{
     coordX = test[conteur].x;
     coordY = test[conteur].y;
-  }while(Board_putPiece(coordX,coordY, currentPlayer) == SQUARE_IS_NOT_EMPTY)
+  }while(Board_putPiece(coordX,coordY, currentPlayer) == SQUARE_IS_NOT_EMPTY);
   currentPlayer = (currentPlayer == CROSS) ? CIRCLE : CROSS;
   conteur++;
 }

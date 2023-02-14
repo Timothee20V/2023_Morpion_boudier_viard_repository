@@ -4,6 +4,9 @@
 
 // Déclaration de la variable boardSquares un tableau vide de trois pointeurs de PieceType
 static PieceType (*boardSquares)[3];
+SquareChangeCallback squareChangeCallback;
+EndOfGameCallback endOfGameCallback;
+
 /**
  * Check if the game has to be ended. Only alignment from the last
  * modified square are checked.
@@ -97,7 +100,12 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
 {
+  //ini des callbacks
+  squareChangeCallback = onSquareChange;
+  endOfGameCallback = onEndOfGame;
+  //géneration tableau de pointeur
   boardSquares = calloc(3, sizeof *boardSquares);
+  //initialisation du tableau
   for(int i = 0; i < 3; i++)
   {
     for (int j = 0; j < 3; j++)
@@ -105,7 +113,6 @@ void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfG
       boardSquares[i][j] = NONE;
     }
   }
-
 }
 
 void Board_free ()
