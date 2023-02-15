@@ -1,11 +1,12 @@
 #include "board.h"
 #include <assert.h>
+#include <stdio.h>
 
 
 // Déclaration de la variable boardSquares un tableau vide de trois pointeurs de PieceType
 static PieceType (*boardSquares)[3];
 SquareChangeCallback squareChangeCallback;
-EndOfGameCallback endOfGameCallback;
+EndOfGameCallback endOfGame;
 
 /**
  * Check if the game has to be ended. Only alignment from the last
@@ -86,10 +87,12 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   { 
     if(boardSquares[lastChangeY][lastChangeX] == CROSS)
     {
+      printf("CROSS_WINS");
       *gameResult = CROSS_WINS;
     }
     if(boardSquares[lastChangeY][lastChangeX] == CIRCLE)
     {
+      printf("CIRCLE_WINS");
       *gameResult = CIRCLE_WINS;
     }
   }
@@ -100,9 +103,6 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
 {
-  //ini des callbacks
-  squareChangeCallback = onSquareChange;
-  endOfGameCallback = onEndOfGame;
   //géneration tableau de pointeur
   boardSquares = calloc(3, sizeof *boardSquares);
   //initialisation du tableau
@@ -113,6 +113,9 @@ void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfG
       boardSquares[i][j] = NONE;
     }
   }
+   //ini des callbacks
+  squareChangeCallback = onSquareChange;
+  endOfGame = onEndOfGame;
 }
 
 void Board_free ()
@@ -135,7 +138,7 @@ PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece
     GameResult gameResult = DRAW;
     if (isGameFinished(boardSquares, x, y, &gameResult))
     {
-      endOfGameCallback(gameResult);
+      endOfGame(gameResult);
     }
     return PIECE_IN_PLACE;
   }

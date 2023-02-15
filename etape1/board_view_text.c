@@ -26,7 +26,7 @@ char afficherCoord(Coordinate x, Coordinate y)
 
 void BoardView_displayAll (void)
 {
-  printf("\033[2J"); 
+  printf("\033[2J \n"); 
   printf("-------------\n");
   for(Coordinate i=0; i<3; i++)
   {
@@ -47,7 +47,27 @@ void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame (GameResult result)
 {
-  printf("Game over: %d ", result);
+  //Declaration du tableau de char pour le switch
+  char winner[10];
+
+  //switch pour afficher le gagnant
+  switch(result)
+  {
+    case DRAW:
+      strcpy(winner, "NOBODY");
+      printf("Null game");
+      break;
+    case CROSS_WINS:
+      strcpy(winner, "CROSS");
+      printf("Cross wins");
+      break;
+    case CIRCLE_WINS:
+      strcpy(winner, "CIRCLE");
+      printf("Circle wins");
+      break;
+  }
+
+  printf("Game over: %s", winner);
 }
 
 void BoardView_displayPlayersTurn (PieceType thisPlayer)
