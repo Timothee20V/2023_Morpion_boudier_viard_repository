@@ -57,15 +57,12 @@ void BoardView_displayEndOfGame (GameResult result)
   {
     case DRAW:
       strcpy(winner, "NOBODY");
-      printf("Null game");
       break;
     case CROSS_WINS:
       strcpy(winner, "CROSS");
-      printf("Cross wins");
       break;
     case CIRCLE_WINS:
       strcpy(winner, "CIRCLE");
-      printf("Circle wins");
       break;
   }
 
