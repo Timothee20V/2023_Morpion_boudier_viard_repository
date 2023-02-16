@@ -1,9 +1,14 @@
 #include "board.h"
 #include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 // Déclaration de la variable boardSquares un tableau vide de trois pointeurs de PieceType
 static PieceType (*boardSquares)[3];
+SquareChangeCallback squareChangeCallback;
+EndOfGameCallback endOfGame;
+
 /**
  * Check if the game has to be ended. Only alignment from the last
  * modified square are checked.
@@ -27,7 +32,6 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   int numberSquaresEmpty = 0;
   bool end = false;
   bool win = false;
-  *gameResult = DRAW;
   
   // Test des lignes
   for(int i=0; i<3; i++)
@@ -79,16 +83,25 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
     end = true;
   }
 
-  if(end && win)
-  { 
-    if(boardSquares[lastChangeY][lastChangeX] == CROSS)
+  // Test si partie gagnée
+  
+  if (win)
+  {
+    if (boardSquares[lastChangeX][lastChangeY] == CROSS)
     {
       *gameResult = CROSS_WINS;
+      printf("CROSS_WINS");
     }
-    if(boardSquares[lastChangeY][lastChangeX] == CIRCLE)
+    else
     {
       *gameResult = CIRCLE_WINS;
+      printf("CIRCLE_WINS");
     }
+  }
+  else if (numberSquaresEmpty == 0)
+  {
+    *gameResult = DRAW;
+    printf("DRAW");
   }
   
   return end;
@@ -97,7 +110,9 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 
 void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
 {
+  //géneration tableau de pointeur
   boardSquares = calloc(3, sizeof *boardSquares);
+  //initialisation du tableau
   for(int i = 0; i < 3; i++)
   {
     for (int j = 0; j < 3; j++)
@@ -105,7 +120,9 @@ void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfG
       boardSquares[i][j] = NONE;
     }
   }
-
+   //ini des callbacks
+  squareChangeCallback = onSquareChange;
+  endOfGame = onEndOfGame;
 }
   
 void Board_free ()  
@@ -125,10 +142,10 @@ PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece
     boardSquares[x][y] = kindOfPiece;
     squareChangeCallback(x, y, kindOfPiece);
 
-    GameResult gameResult;
-    if (isGameFinished(boardSquares, x, y, gameResult))
+    GameResult gameResult = DRAW;
+    if (isGameFinished(boardSquares, x, y, &gameResult))
     {
-      endOfGameCallback(gameResult);
+      endOfGame(gameResult);
     }
     return PIECE_IN_PLACE;
   }
