@@ -50,7 +50,7 @@ void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
 void BoardView_displayEndOfGame (GameResult result)
 {
   //Declaration du tableau de char pour le switch
-  char winner[10];
+  char winner[6];
 
   //switch pour afficher le gagnant
   switch(result)
@@ -66,7 +66,7 @@ void BoardView_displayEndOfGame (GameResult result)
       break;
   }
 
-  printf("Game over: %s", winner);
+  printf("\nGame over: %s\n", winner);
 }
 
 void BoardView_displayPlayersTurn (PieceType thisPlayer)

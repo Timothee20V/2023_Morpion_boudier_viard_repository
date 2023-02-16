@@ -15,38 +15,43 @@ PieceType currentPlayer = CROSS;
 
 int conteur = 0;
 
-const struct {
-  Coordinate x;
-  Coordinate y;} 
-
 // CROSS
-// test[9] = {
-//   { 1, 1},
-//   { 0, 0},
-//   { 0, 1},
-//   { 2, 1},
-//   { 2, 0},
-//   { 1, 0},
-//   { 0, 2},
-//   { 1, 2},
-//   { 2, 2},
-// };
+static const struct {
+  Coordinate x;
+  Coordinate y;
+} test_CROSS[9] = {
+  { 1, 1},
+  { 0, 0},
+  { 0, 1},
+  { 2, 1},
+  { 2, 0},
+  { 1, 0},
+  { 0, 2},
+  { 1, 2},
+  { 2, 2},
+};
 
 // CIRCLE
-// test[9] = {
-//   { 1, 1},
-//   { 0, 0},
-//   { 0, 1},
-//   { 2, 0},
-//   { 1, 2},
-//   { 1, 0},
-//   { 2, 1},
-//   { 0, 2},
-//   { 2, 2},
-// };
+static const struct {
+  Coordinate x;
+  Coordinate y;
+} test_CIRCLE[9] = {
+  { 1, 1},
+  { 0, 0},
+  { 0, 1},
+  { 2, 0},
+  { 1, 2},
+  { 1, 0},
+  { 2, 1},
+  { 0, 2},
+  { 2, 2},
+};
 
 // DRAW
-test[9] = {
+static const struct {
+  Coordinate x;
+  Coordinate y;
+} test_DRAW[9] = {
   { 0, 0},
   { 1, 0},
   { 2, 0},
@@ -71,8 +76,8 @@ void PlayerManager_oneTurn (void)
   Coordinate coordX;
   Coordinate coordY;
   do{
-    coordX = test[conteur].x;
-    coordY = test[conteur].y;
+    coordX = test_DRAW[conteur].x;
+    coordY = test_DRAW[conteur].y;
   }while(Board_putPiece(coordX,coordY, currentPlayer) == SQUARE_IS_NOT_EMPTY);
   currentPlayer = (currentPlayer == CROSS) ? CIRCLE : CROSS;
   conteur++;
