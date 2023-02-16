@@ -90,18 +90,15 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
     if (boardSquares[lastChangeX][lastChangeY] == CROSS)
     {
       *gameResult = CROSS_WINS;
-      printf("CROSS_WINS");
     }
     else
     {
       *gameResult = CIRCLE_WINS;
-      printf("CIRCLE_WINS");
     }
   }
   else if (numberSquaresEmpty == 0)
   {
     *gameResult = DRAW;
-    printf("DRAW");
   }
   
   return end;

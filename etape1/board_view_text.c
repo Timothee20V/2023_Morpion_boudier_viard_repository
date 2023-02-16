@@ -50,26 +50,23 @@ void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
 void BoardView_displayEndOfGame (GameResult result)
 {
   //Declaration du tableau de char pour le switch
-  char winner[10];
+  char winner[6];
 
   //switch pour afficher le gagnant
   switch(result)
   {
     case DRAW:
       strcpy(winner, "NOBODY");
-      printf("Null game");
       break;
     case CROSS_WINS:
       strcpy(winner, "CROSS");
-      printf("Cross wins");
       break;
     case CIRCLE_WINS:
       strcpy(winner, "CIRCLE");
-      printf("Circle wins");
       break;
   }
 
-  printf("Game over: %s", winner);
+  printf("\nGame over: %s\n", winner);
 }
 
 void BoardView_displayPlayersTurn (PieceType thisPlayer)
