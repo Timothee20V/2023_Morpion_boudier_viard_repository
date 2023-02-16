@@ -1,6 +1,7 @@
 #include "board_view.h"
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 
 #if defined CONFIG_TEXTUI
 

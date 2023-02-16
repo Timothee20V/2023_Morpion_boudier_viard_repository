@@ -1,6 +1,7 @@
 #include "board.h"
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 // Déclaration de la variable boardSquares un tableau vide de trois pointeurs de PieceType
@@ -31,7 +32,6 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
   int numberSquaresEmpty = 0;
   bool end = false;
   bool win = false;
-  *gameResult = DRAW;
   
   // Test des lignes
   for(int i=0; i<3; i++)
@@ -83,18 +83,25 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
     end = true;
   }
 
-  if(end && win)
-  { 
-    if(boardSquares[lastChangeY][lastChangeX] == CROSS)
+  // Test si partie gagnée
+  
+  if (win)
+  {
+    if (boardSquares[lastChangeX][lastChangeY] == CROSS)
     {
-      printf("CROSS_WINS");
       *gameResult = CROSS_WINS;
+      printf("CROSS_WINS");
     }
-    if(boardSquares[lastChangeY][lastChangeX] == CIRCLE)
+    else
     {
-      printf("CIRCLE_WINS");
       *gameResult = CIRCLE_WINS;
+      printf("CIRCLE_WINS");
     }
+  }
+  else if (numberSquaresEmpty == 0)
+  {
+    *gameResult = DRAW;
+    printf("DRAW");
   }
   
   return end;

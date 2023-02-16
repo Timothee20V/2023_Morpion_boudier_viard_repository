@@ -31,34 +31,34 @@ int conteur = 0;
 // };
 
 // CIRCLE
-const struct {
-  Coordinate x;
-  Coordinate y;} test[9] = {
-    { 1, 1},
-    { 0, 0},
-    { 0, 1},
-    { 2, 0},
-    { 1, 2},
-    { 1, 0},
-    { 2, 1},
-    { 0, 2},
-    { 2, 2},
-};
-
-// DRAW
 // const struct {
 //   Coordinate x;
 //   Coordinate y;} test[9] = {
-//     { 0, 0},
-//     { 1, 0},
-//     { 2, 0},
-//     { 0, 1},
 //     { 1, 1},
-//     { 2, 1},
+//     { 0, 0},
+//     { 0, 1},
+//     { 2, 0},
 //     { 1, 2},
+//     { 1, 0},
+//     { 2, 1},
 //     { 0, 2},
 //     { 2, 2},
 // };
+
+// DRAW
+const struct {
+  Coordinate x;
+  Coordinate y;} test[9] = {
+    { 0, 0},
+    { 1, 0},
+    { 2, 0},
+    { 0, 1},
+    { 1, 1},
+    { 2, 2},
+    { 1, 2},
+    { 0, 2},
+    { 2, 1},
+};
 
 void PlayerManager_init (void)
 {
