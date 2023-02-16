@@ -21,7 +21,7 @@ extern void BoardView_init (void);
 
 /**
  * Destructor of the board view.
- *
+*
  * Must be called after using any function of this module to free
  * related resources.
  */

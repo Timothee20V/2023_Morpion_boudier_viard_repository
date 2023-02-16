@@ -14,6 +14,7 @@ void BoardView_free (void)
 }
 
 char afficherCoord(Coordinate x, Coordinate y)
+
 {
   switch(Board_getSquareContent(x, y)){
         case NONE:

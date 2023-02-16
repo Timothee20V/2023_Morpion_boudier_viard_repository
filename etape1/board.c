@@ -124,8 +124,8 @@ void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfG
   squareChangeCallback = onSquareChange;
   endOfGame = onEndOfGame;
 }
-
-void Board_free ()
+  
+void Board_free ()  
 {
  //efface en memoire le tableau boardSquares
   free(boardSquares);
