@@ -65,6 +65,7 @@ int Is_valid(char *str) {
 
 void PlayerManager_init (void)
 {
+  currentPlayer = CROSS;
 }
 
 void PlayerManager_free (void)

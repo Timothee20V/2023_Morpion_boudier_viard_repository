@@ -13,7 +13,7 @@ void BoardView_free (void)
 {
 }
 
-char afficherCoord(Coordinate x, Coordinate y)
+char BoardView_displayCoord(Coordinate x, Coordinate y)
 
 {
   switch(Board_getSquareContent(x, y)){
@@ -35,7 +35,7 @@ void BoardView_displayAll (void)
     for(Coordinate j=0; j<3; j++)
     {
       printf("| ");
-      printf("%c ", afficherCoord(i, j));
+      printf("%c ", BoardView_displayCoord(i, j));
     }
     printf("|\n");
     printf("-------------\n");

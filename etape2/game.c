@@ -10,7 +10,7 @@
 #include "board.h"
 
 bool endGame = false;
-PieceType currentPlayer = CROSS;
+PieceType currentPlayer;
 
 void squareChangedCallback(Coordinate x, Coordinate y, PieceType newContent) {
     BoardView_displaySquare(x, y, newContent);
