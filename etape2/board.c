@@ -1,4 +1,5 @@
 #include "board.h"
+#include "board_view.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -132,6 +133,7 @@ PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece
 { 
   if (boardSquares[x][y] != NONE)
   {
+    BoardView_sayCannotPutPiece();
     return SQUARE_IS_NOT_EMPTY;
   }
   else

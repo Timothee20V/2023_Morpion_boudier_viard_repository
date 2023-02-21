@@ -10,6 +10,7 @@
 #include "board.h"
 
 bool endGame = false;
+PieceType currentPlayer = CROSS;
 
 void squareChangedCallback(Coordinate x, Coordinate y, PieceType newContent) {
     BoardView_displaySquare(x, y, newContent);
@@ -36,8 +37,6 @@ void Game_free (void)
 
 void Game_loop (void)
 {
-  PieceType currentPlayer = CROSS;
-
   BoardView_displayAll();
   while (!endGame) {
     BoardView_displayPlayersTurn(currentPlayer);

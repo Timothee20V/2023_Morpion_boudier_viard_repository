@@ -65,4 +65,29 @@ extern void BoardView_displayPlayersTurn (PieceType thisPlayer);
  */
 extern void BoardView_sayCannotPutPiece (void);
 
+/**
+ * Displays a message when a move has been refused because there is the wrong number of characters
+ */
+extern void BoardView_sayCannotPutPieceNotThreeChar (void);
+
+/**
+ * Displays a message when a move has been refused because there is not a comma
+ */
+extern void BoardView_sayCannotPutPieceNoComma (void);
+
+/**
+ * Displays a message when a move has been refused because there is the no character before or after the comma
+ */
+extern void BoardView_sayCannotPutPieceInvalidPos (void);
+
+/**
+ * Displays a message when a move has been refused because there is the no digit
+ */
+extern void BoardView_sayCannotPutPieceNoDigit (void);
+
+/**
+ * Displays a message when a move has been refused because there is a digit not between 0 and 2
+ */
+extern void BoardView_sayCannotPutPieceNotBetweenTowAndZero (void);
+
 #endif /* !defined BOARD_VIEW_H_ */

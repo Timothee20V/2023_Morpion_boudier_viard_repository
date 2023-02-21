@@ -56,17 +56,17 @@ void BoardView_displayEndOfGame (GameResult result)
   switch(result)
   {
     case DRAW:
-      strcpy(winner, "NOBODY");
+      strcpy(winner, "PERSONNE");
       break;
     case CROSS_WINS:
-      strcpy(winner, "CROSS");
+      strcpy(winner, "X");
       break;
     case CIRCLE_WINS:
-      strcpy(winner, "CIRCLE");
+      strcpy(winner, "O");
       break;
   }
 
-  printf("\nGame over: %s\n", winner);
+  printf("\nGame over: %s a gagne", winner);
 }
 
 void BoardView_displayPlayersTurn (PieceType thisPlayer)
@@ -74,13 +74,43 @@ void BoardView_displayPlayersTurn (PieceType thisPlayer)
   //verifie que la valeur est bien un joueur
   assert(thisPlayer != NONE);
   //print le joueur qui doit jouer
-  printf("Player %d has to play", thisPlayer);
+  printf("\nPlayer %s doit jouer \n", (thisPlayer == CROSS) ? "X" : "O");
 }
 
 void BoardView_sayCannotPutPiece (void)
 {
   //print le message d'erreur quand la case n'est pas vide
-  printf("Cannot put piece, this square is not empty");
+  printf("Impossible de poser une piece, cette case n'est pas vide\n");
+}
+
+void BoardView_sayCannotPutPieceNotThreeChar (void)
+{
+  //print le message d'erreur quand l'entrée n'a pas 3 caractères
+  printf("Pas 3 caracteres\n");
+}
+
+void BoardView_sayCannotPutPieceNoComma (void)
+{
+  //print le message d'erreur quand l'entrée n'a pas de virgule
+  printf("Pas de virgule\n");
+}
+
+void BoardView_sayCannotPutPieceInvalidPos (void)
+{
+  //print le message d'erreur quand l'entrée n'a pas de caractère avant et après la virgule
+  printf("Pas de caractere avant ou apres la virgule\n");
+}
+
+void BoardView_sayCannotPutPieceNoDigit (void)
+{
+  //print le message d'erreur quand l'entrée n'a pas de caractère numérique
+  printf("Pas de caractere numerique\n");
+}
+
+void BoardView_sayCannotPutPieceNotBetweenTowAndZero (void)
+{
+  //print le message d'erreur quand l'entrée a des numéros supérieurs à 2 ou inférieurs à 0
+  printf("Pas compris entre 0 et 2\n");
 }
 
 #endif // defined CONFIG_TEXTUI
