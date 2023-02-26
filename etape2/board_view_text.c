@@ -30,7 +30,9 @@ void BoardView_displayAll (void)
 {
   //efface l'ecran
   printf("\033[2J \n"); 
+
   //Affichage du tableau propre
+  printf("-------------\n");
   for(Coordinate i=0; i<3; i++)
   {
     for(Coordinate j=0; j<3; j++)
