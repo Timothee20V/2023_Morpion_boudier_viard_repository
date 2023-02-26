@@ -14,7 +14,7 @@
 PieceType currentPlayer = CROSS;
 
 int conteur = 0;
-
+//Differentes configurations de test pour une partie
 // CROSS
 static const struct {
   Coordinate x;

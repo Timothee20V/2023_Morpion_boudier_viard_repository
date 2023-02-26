@@ -130,15 +130,17 @@ void Board_free ()
 
 PutPieceResult Board_putPiece (Coordinate x, Coordinate y, PieceType kindOfPiece)
 { 
+  //verifie s'il y a une piece sur la case
   if (boardSquares[x][y] != NONE)
   {
     return SQUARE_IS_NOT_EMPTY;
   }
+  //Sinon on place la piece
   else
   {
     boardSquares[x][y] = kindOfPiece;
     squareChangeCallback(x, y, kindOfPiece);
-
+    //On ragarde si la partie est finie
     GameResult gameResult = DRAW;
     if (isGameFinished(boardSquares, x, y, &gameResult))
     {

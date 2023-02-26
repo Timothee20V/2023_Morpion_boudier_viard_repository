@@ -14,8 +14,8 @@ void BoardView_free (void)
 }
 
 char afficherCoord(Coordinate x, Coordinate y)
-
 {
+  //switch pour renvoyer le char correspondant au type de piece
   switch(Board_getSquareContent(x, y)){
         case NONE:
           return ' ';
@@ -28,7 +28,9 @@ char afficherCoord(Coordinate x, Coordinate y)
 
 void BoardView_displayAll (void)
 {
+  //efface l'ecran
   printf("\033[2J \n"); 
+  //Affichage du tableau propre
   printf("-------------\n");
   for(Coordinate i=0; i<3; i++)
   {
